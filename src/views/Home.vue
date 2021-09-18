@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Reactive vs Ref</h1>
+
+    <h2>{{ iroman }}</h2>
+    <h2>{{ hulk }}</h2>
+
+    <button @click="changeIroman">
+      Iroman
+    </button>
+    <button @click="changeHulk">
+      Hulk
+    </button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { ref, reactive } from 'vue'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+
+  setup() {
+  //
+    const iroman = ref({ name: 'Tony', age: 50 })
+    const hulk = reactive({ name: 'Tony', age: 50 })
+  return {
+      iroman,
+      hulk,
+      changeIroman: () => {
+        iroman.value.name = 'Tony Start'
+        iroman.value.age = '54'
+      },
+      changeHulk: () => {
+        hulk.name = 'Brus Baner'
+        hulk.age = '43'
+
+      }
+    }
   }
 }
 </script>
